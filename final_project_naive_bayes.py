@@ -3,13 +3,13 @@ from ucimlrepo import fetch_ucirepo
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-from sklearn.naive_bayes import MultinomialNB as nb
+from sklearn.naive_bayes import BernoulliNB as nb
 
 import sys
 from datetime import datetime
 
 numFolds = 5
-include_enrolled = False
+include_enrolled = True
 
 if include_enrolled:
     raw_data = fetch_ucirepo(id=697).data
