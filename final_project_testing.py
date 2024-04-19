@@ -19,8 +19,9 @@ orig_X = raw_data
 
 # choosing the input variables
 input_names = ['Application order', 'Daytime/evening attendance', 'Previous qualification',
-               'Previous qualification (grade)', 'Admission grade', 'Displaced', 'Educational special needs',
-               'Debtor', 'Tuition fees up to date', 'Gender', 'Scholarship holder', 'Age at enrollment',
+               'Previous qualification (grade)',
+               'Admission grade', 'Displaced', 'Educational special needs','Debtor', 'Tuition fees up to date',
+               'Gender', 'Scholarship holder', 'Age at enrollment', 'International',
                'Curricular units 1st sem (credited)', 'Curricular units 1st sem (enrolled)',
                'Curricular units 1st sem (evaluations)', 'Curricular units 1st sem (approved)',
                'Curricular units 1st sem (grade)', 'Curricular units 1st sem (without evaluations)',
@@ -30,10 +31,18 @@ input_names = ['Application order', 'Daytime/evening attendance', 'Previous qual
                'Unemployment rate', 'Inflation rate']
 
 scales = {
+    'Marital Status': 6,
+    'Application mode': 57,
     'Application order': 9,
+    'Course': 1000,
     'Daytime/evening attendance': 1,
     'Previous qualification': 43,
     'Previous qualification (grade)': 200,
+    'Nacionality': 110,
+    "Mother's qualification": 44,
+    "Father's qualification": 44,
+    "Mother's occupation": 195,
+    "Father's occupation": 195,
     'Admission grade': 200,
     'Displaced': 1,
     'Educational special needs': 1,
@@ -56,7 +65,8 @@ scales = {
     'Curricular units 2nd sem (grade)': 20,
     'Curricular units 2nd sem (without evaluations)': 5,
     'Unemployment rate': 100,
-    'Inflation rate': 100
+    'Inflation rate': 100,
+    'GDP': 7
 }
 
 num_inputs = len(input_names)
@@ -77,7 +87,7 @@ folds_y = [ravel(y.iloc[:size//5].values), ravel(y.iloc[size//5:2*size//5].value
 test_X = X.iloc[4*size//5:].values
 test_y = ravel(y.iloc[4*size//5:].values)
 
-neigh = knn(n_neighbors=5)#, weights='distance')
+neigh = knn(n_neighbors=9)#, weights='distance')
 
 # Initializing some variables used for testing statistics
 lr_stats = {'Graduate': 0, 'Enrolled': 0, 'Dropout': 0}
@@ -121,6 +131,10 @@ print("accuracy: " + str(float(num_correct)/total_stats['All']))
 print("accuracy for graduate: " + str(float(knn_stats['Graduate'])/total_stats['Graduate']))
 #print("accuracy for enrolled: " + str(float(knn_stats['Enrolled'])/total_stats['Enrolled']))
 print("accuracy for dropout: " + str(float(knn_stats['Dropout'])/total_stats['Dropout']))
+
+#print("total grad: " + str(total_stats['Graduate']))
+#print("total enrolled: " + str(total_stats['Enrolled']))
+#print("total dropout: " + str(total_stats['Dropout']))
 
 num_correct = 0
 for i in range(0, len(test_X)):
