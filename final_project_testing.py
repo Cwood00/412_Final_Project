@@ -27,10 +27,45 @@ input_names = ['Application order', 'Daytime/evening attendance', 'Previous qual
                'Curricular units 2nd sem (credited)', 'Curricular units 2nd sem (enrolled)',
                'Curricular units 2nd sem (evaluations)', 'Curricular units 2nd sem (approved)',
                'Curricular units 2nd sem (grade)', 'Curricular units 2nd sem (without evaluations)',
-               'Unemployment rate', 'Inflation rate', 'GDP']
+               'Unemployment rate', 'Inflation rate']
+
+scales = {
+    'Application order': 9,
+    'Daytime/evening attendance': 1,
+    'Previous qualification': 43,
+    'Previous qualification (grade)': 200,
+    'Admission grade': 200,
+    'Displaced': 1,
+    'Educational special needs': 1,
+    'Debtor': 1,
+    'Tuition fees up to date': 1,
+    'Gender': 1,
+    'Scholarship holder': 1,
+    'Age at enrollment': 15,
+    'International': 1,
+    'Curricular units 1st sem (credited)': 5,
+    'Curricular units 1st sem (enrolled)': 5,
+    'Curricular units 1st sem (evaluations)': 5,
+    'Curricular units 1st sem (approved)': 5,
+    'Curricular units 1st sem (grade)': 20,
+    'Curricular units 1st sem (without evaluations)': 5,
+    'Curricular units 2nd sem (credited)': 5,
+    'Curricular units 2nd sem (enrolled)': 5,
+    'Curricular units 2nd sem (evaluations)': 5,
+    'Curricular units 2nd sem (approved)': 5,
+    'Curricular units 2nd sem (grade)': 20,
+    'Curricular units 2nd sem (without evaluations)': 5,
+    'Unemployment rate': 100,
+    'Inflation rate': 100
+}
+
 num_inputs = len(input_names)
 
 X = orig_X[input_names]
+
+# Data normalization, scale all data to the same level so that they have equal impact on the result
+for name in X:
+    X[name] /= scales[name]
 y = orig_y
 
 size = X.shape[0]
