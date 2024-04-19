@@ -5,15 +5,29 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.neighbors import KNeighborsClassifier as knn
 
-# fetch dataset
-predict_students_dropout_and_academic_success = fetch_ucirepo(id=697)
+# Use these lines if you want to include the enrolled students
+#raw_data = fetch_ucirepo(id=697).data
+#orig_X = raw_data.features
+#orig_y = raw_data.targets
 
-# data (as pandas dataframes)
-orig_X = predict_students_dropout_and_academic_success.data.features
-orig_y = predict_students_dropout_and_academic_success.data.targets
+# Use these lines if you want to remove the enrolled students
+raw_data = fetch_ucirepo(id=697).data.original
+raw_data = raw_data.loc[raw_data['Target'] != 'Enrolled']
+orig_y = raw_data['Target']
+del raw_data['Target']
+orig_X = raw_data
 
 # choosing the input variables
-input_names = ['Gender', 'Age at enrollment', 'International']
+input_names = ['Application order', 'Daytime/evening attendance', 'Previous qualification',
+               'Previous qualification (grade)', 'Admission grade', 'Displaced', 'Educational special needs',
+               'Debtor', 'Tuition fees up to date', 'Gender', 'Scholarship holder', 'Age at enrollment',
+               'Curricular units 1st sem (credited)', 'Curricular units 1st sem (enrolled)',
+               'Curricular units 1st sem (evaluations)', 'Curricular units 1st sem (approved)',
+               'Curricular units 1st sem (grade)', 'Curricular units 1st sem (without evaluations)',
+               'Curricular units 2nd sem (credited)', 'Curricular units 2nd sem (enrolled)',
+               'Curricular units 2nd sem (evaluations)', 'Curricular units 2nd sem (approved)',
+               'Curricular units 2nd sem (grade)', 'Curricular units 2nd sem (without evaluations)',
+               'Unemployment rate', 'Inflation rate', 'GDP']
 num_inputs = len(input_names)
 
 X = orig_X[input_names]
@@ -70,8 +84,13 @@ for validation_num in range(0, 4):
 
 print("accuracy: " + str(float(num_correct)/total_stats['All']))
 print("accuracy for graduate: " + str(float(knn_stats['Graduate'])/total_stats['Graduate']))
-print("accuracy for enrolled: " + str(float(knn_stats['Enrolled'])/total_stats['Enrolled']))
+#print("accuracy for enrolled: " + str(float(knn_stats['Enrolled'])/total_stats['Enrolled']))
 print("accuracy for dropout: " + str(float(knn_stats['Dropout'])/total_stats['Dropout']))
 
+num_correct = 0
+for i in range(0, len(test_X)):
+    if neigh.predict(test_X[i].reshape(1,-1)) == test_y[i]:
+        num_correct += 1
 
+print("testing accuracy: " + str(float(num_correct)/len(test_X)))
 
