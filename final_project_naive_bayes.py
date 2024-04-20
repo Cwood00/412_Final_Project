@@ -24,41 +24,41 @@ else:
 
 # choosing the input variables continuous variables are excluded for naive bayes
 input_names = [
-    'Marital Status',
+    # 'Marital Status',
     'Application order',
-    'Application mode',
-    'Course',
+    # 'Application mode',
+    # 'Course',
     'Daytime/evening attendance',
-    'Previous qualification',
-    # 'Previous qualification (grade)',
-    'Nacionality',
-    'Mother\'s qualification',
-    'Father\'s qualification',
-    'Mother\'s occupation',
-    'Father\'s occupation',
-    # 'Admission grade',
+    # 'Previous qualification',
+    # 'Previous qualification (grade)', Should not be used with naive bayes
+    # 'Nacionality',
+    # 'Mother\'s qualification',
+    # 'Father\'s qualification',
+    # 'Mother\'s occupation',
+    # 'Father\'s occupation',
+    # 'Admission grade', Should not be used with naive bayes
     'Displaced',
     'Educational special needs',
     'Debtor',
     'Tuition fees up to date',
     'Gender',
     'Scholarship holder',
-    'Age at enrollment',
+    # 'Age at enrollment',
     'Curricular units 1st sem (credited)',
     'Curricular units 1st sem (enrolled)',
     'Curricular units 1st sem (evaluations)',
     'Curricular units 1st sem (approved)',
-    # 'Curricular units 1st sem (grade)',
+    # 'Curricular units 1st sem (grade)', Should not be used with naive bayes
     'Curricular units 1st sem (without evaluations)',
     'Curricular units 2nd sem (credited)',
     'Curricular units 2nd sem (enrolled)',
     'Curricular units 2nd sem (evaluations)',
     'Curricular units 2nd sem (approved)',
-    # 'Curricular units 2nd sem (grade)',
+    # 'Curricular units 2nd sem (grade)', Should not be used with naive bayes
     'Curricular units 2nd sem (without evaluations)',
-    # 'Unemployment rate',
-    # 'Inflation rate',
-    #'GDP'
+    # 'Unemployment rate', Should not be used with naive bayes
+    # 'Inflation rate', Should not be used with naive bayes
+    #'GDP' Should not be used with naive bayes
 ]
 
 # Used to store result of each permutation
@@ -83,9 +83,15 @@ test_y = ravel(y.iloc[(numFolds - 1) * size // numFolds:].values)
 correct_predictions = {'Graduate': 0, 'Enrolled': 0, 'Dropout': 0, 'All': 0}
 total_predictions = {'Graduate': 0, 'Enrolled': 0, 'Dropout': 0, 'All': 0}
 
+start_time = datetime.now()
 model = nb().fit(training_X, training_y)
+end_time = datetime.now()
+print(f"Took {(end_time - start_time).total_seconds()} seconds to train naive bayes, using {len(training_y)} samples", file=outputFile)
 
+start_time = datetime.now()
 predictions = model.predict(test_X)
+end_time = datetime.now()
+print(f"Took {(end_time - start_time).total_seconds()} seconds to test naive bayes, using {len(test_X)} samples", file=outputFile)
 
 for i in range(len(predictions)):
     prediction = predictions[i]
