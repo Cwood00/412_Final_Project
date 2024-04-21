@@ -1,0 +1,5 @@
+Took 0.133482 seconds to train logistic regression, using 2904 samples
+Took 0.000922 seconds to test logistic regression, using 726 samples
+Total testing accuracy = 82.64462809917356%
+Graduate testing accuracy = 93.3806146572104%
+Dropout testing accuracy = 67.65676567656766%

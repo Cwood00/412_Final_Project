@@ -1,0 +1,25 @@
+Took 0.32955 seconds to train logistic regression, using 3539 samples
+Took 0.002743 seconds to test logistic regression, using 885 samples
+Total testing accuracy = 74.35028248587571%
+Graduate testing accuracy = 89.62264150943396%
+Enrolled testing accuracy = 28.846153846153843%
+Dropout testing accuracy = 76.39344262295083%
+
+    'Application order',
+    'Daytime/evening attendance',
+    'Displaced',
+    'Educational special needs',
+    'Debtor',
+    'Tuition fees up to date',
+    'Gender',
+    'Scholarship holder',
+    'Curricular units 1st sem (credited)',
+    'Curricular units 1st sem (enrolled)',
+    'Curricular units 1st sem (evaluations)',
+    'Curricular units 1st sem (approved)',
+    'Curricular units 1st sem (without evaluations)',
+    'Curricular units 2nd sem (credited)',
+    'Curricular units 2nd sem (enrolled)',
+    'Curricular units 2nd sem (evaluations)',
+    'Curricular units 2nd sem (approved)',
+    'Curricular units 2nd sem (without evaluations)'

@@ -1,0 +1,39 @@
+Took 0.160023 seconds to train logistic regression, using 3539 samples
+Took 0.000549 seconds to test logistic regression, using 885 samples
+Total testing accuracy = 65.42372881355932%
+Graduate testing accuracy = 93.39622641509435%
+Enrolled testing accuracy = 3.205128205128205%
+Dropout testing accuracy = 58.36065573770492%
+
+input_names = [
+     'Marital Status',
+    'Application order',
+     'Application mode',
+     'Course',
+    'Daytime/evening attendance',
+     'Previous qualification',
+    # 'Previous qualification (grade)', Should not be used with naive bayes
+    'Nacionality',
+    'Mother\'s qualification',
+    'Father\'s qualification',
+    'Mother\'s occupation',
+    'Father\'s occupation',
+    'Admission grade',
+    'Displaced',
+    'Educational special needs',
+    'Debtor',
+    'Tuition fees up to date',
+    'Gender',
+    'Scholarship holder',
+    'Age at enrollment',
+    'Curricular units 1st sem (credited)',
+    'Curricular units 1st sem (enrolled)',
+    'Curricular units 1st sem (evaluations)',
+    'Curricular units 1st sem (approved)',
+    'Curricular units 1st sem (grade)',
+    'Curricular units 1st sem (without evaluations)',
+    'Curricular units 2nd sem (credited)',
+    'Curricular units 2nd sem (enrolled)',
+    'Curricular units 2nd sem (evaluations)',
+    'Curricular units 2nd sem (approved)',
+    'Curricular units 2nd sem (without evaluations)',
