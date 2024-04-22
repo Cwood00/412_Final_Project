@@ -1,0 +1,47 @@
+Validation on k = 1
+accuracy: 0.6747668833003674
+accuracy for graduate: 0.8016806722689076
+accuracy for enrolled: 0.3667711598746082
+accuracy for dropout: 0.6478494623655914
+Validation on k = 3
+accuracy: 0.7140435151172647
+accuracy for graduate: 0.8582633053221288
+accuracy for enrolled: 0.30094043887147337
+accuracy for dropout: 0.7195340501792115
+Validation on k = 5
+accuracy: 0.7239333144956203
+accuracy for graduate: 0.8739495798319328
+accuracy for enrolled: 0.31974921630094044
+accuracy for dropout: 0.7150537634408602
+Validation on k = 7
+accuracy: 0.7324102853913534
+accuracy for graduate: 0.9025210084033614
+accuracy for enrolled: 0.31974921630094044
+accuracy for dropout: 0.696236559139785
+Validation on k = 9
+accuracy: 0.7363662051426957
+accuracy for graduate: 0.9103641456582633
+accuracy for enrolled: 0.3166144200626959
+accuracy for dropout: 0.6980286738351255
+Validation on k = 11
+accuracy: 0.7383441650183667
+accuracy for graduate: 0.9215686274509803
+accuracy for enrolled: 0.3072100313479624
+accuracy for dropout: 0.6917562724014337
+Validation on k = 13
+accuracy: 0.7403221248940378
+accuracy for graduate: 0.9288515406162465
+accuracy for enrolled: 0.30407523510971785
+accuracy for dropout: 0.6881720430107527
+Validation on k = 15
+accuracy: 0.7377790336253179
+accuracy for graduate: 0.9310924369747899
+accuracy for enrolled: 0.29153605015673983
+accuracy for dropout: 0.6836917562724014
+Took 214.834007 seconds to perform cross validation for 8 k values
+Optimal k value = 13
+Took 0.023025 seconds to test knn, using 885 samples
+Total testing accuracy = 71.86440677966101%
+Graduate testing accuracy = 92.21698113207547%
+Enrolled testing accuracy = 28.205128205128204%
+Dropout testing accuracy = 65.90163934426229%
