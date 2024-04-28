@@ -63,7 +63,7 @@ input_names = [
 
 # Used to store result of each permutation
 dtString = datetime.now().strftime("%Y%m%d-%H%M%S")
-filename = f"{dtString}.txt"
+filename = f"naive_bayes_{dtString}.txt"
 
 outputFile = open(filename, 'a')
 
@@ -82,6 +82,10 @@ test_y = ravel(y.iloc[(numFolds - 1) * size // numFolds:].values)
 # Initializing some variables used for testing statistics
 correct_predictions = {'Graduate': 0, 'Enrolled': 0, 'Dropout': 0, 'All': 0}
 total_predictions = {'Graduate': 0, 'Enrolled': 0, 'Dropout': 0, 'All': 0}
+# nested maps outer map key is true class, inner map key is predicted class, inner map value is count
+confusion_matrix = {'Graduate': {'Graduate': 0, 'Enrolled': 0, 'Dropout': 0, 'All': 0},
+                    'Enrolled': {'Graduate': 0, 'Enrolled': 0, 'Dropout': 0, 'All': 0},
+                    'Dropout': {'Graduate': 0, 'Enrolled': 0, 'Dropout': 0, 'All': 0}}
 
 start_time = datetime.now()
 model = nb().fit(training_X, training_y)
@@ -99,6 +103,7 @@ for i in range(len(predictions)):
 
     total_predictions[true_value] += 1
     total_predictions['All'] += 1
+    confusion_matrix[true_value][prediction] += 1
 
     if prediction == true_value:
         correct_predictions[true_value] += 1
@@ -110,5 +115,18 @@ print(f"Graduate testing accuracy = {(correct_predictions['Graduate'] / total_pr
 if include_enrolled:
     print(f"Enrolled testing accuracy = {(correct_predictions['Enrolled'] / total_predictions['Enrolled']) * 100}%", file=outputFile)
 print(f"Dropout testing accuracy = {(correct_predictions['Dropout'] / total_predictions['Dropout']) * 100}%", file=outputFile)
+print(f"Out of {total_predictions['Graduate']} true graduate samples, "
+      f"{confusion_matrix['Graduate']['Graduate']} were predicted graduate, "
+      f"{confusion_matrix['Graduate']['Enrolled']} were predicted enrolled, and, "
+      f"{confusion_matrix['Graduate']['Dropout']} where predicted dropout", file=outputFile)
+if include_enrolled:
+    print(f"Out of {total_predictions['Enrolled']} true Enrolled samples, "
+          f"{confusion_matrix['Enrolled']['Graduate']} were predicted graduate, "
+          f"{confusion_matrix['Enrolled']['Enrolled']} were predicted enrolled, and, "
+          f"{confusion_matrix['Enrolled']['Dropout']} where predicted dropout", file=outputFile)
+print(f"Out of {total_predictions['Dropout']} true Dropout samples, "
+      f"{confusion_matrix['Dropout']['Graduate']} were predicted graduate, "
+      f"{confusion_matrix['Dropout']['Enrolled']} were predicted enrolled, and, "
+      f"{confusion_matrix['Dropout']['Dropout']} where predicted dropout", file=outputFile)
 
 outputFile.close()  # Closing it to clear the buffer

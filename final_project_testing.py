@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from sklearn.neighbors import KNeighborsClassifier as knn
 from datetime import datetime
 
-include_enrolled = False
+include_enrolled = True
 
 if include_enrolled:
     raw_data = fetch_ucirepo(id=697).data
@@ -112,7 +112,7 @@ test_X = X.iloc[4*size//5:].values
 test_y = ravel(y.iloc[4*size//5:].values)
 
 # Used to store result of each permutation
-dtString = datetime.now().strftime("%Y%m%d-%H%M%S")
+dtString = datetime.now().strftime("knn_%Y%m%d-%H%M%S")
 filename = f"{dtString}.txt"
 
 outputFile = open(filename, 'a')
@@ -152,12 +152,14 @@ for k in k_values:
 
         # The actual knn function goes here
         neigh.fit(X_cur, y_cur)
+        predictions = neigh.predict(X_validation)
 
         total_stats['All'] += len(folds[validation_num])
         for i in range(0, len(X_validation)):
             total_stats[y_validation[i]] += 1
 
-            if neigh.predict(X_validation[i].reshape(1,-1)) == y_validation[i]:
+            # if neigh.predict(X_validation[i].reshape(1,-1)) == y_validation[i]:
+            if predictions[i] == y_validation[i]:
                 num_correct += 1
                 knn_stats[y_validation[i]] += 1
 
@@ -190,6 +192,10 @@ print(f"Took {(end_time - start_time).total_seconds()} seconds to test knn, usin
 
 correct_predictions = {'Graduate': 0, 'Enrolled': 0, 'Dropout': 0, 'All': 0}
 total_predictions = {'Graduate': 0, 'Enrolled': 0, 'Dropout': 0, 'All': 0}
+# nested maps outer map key is true class, inner map key is predicted class, inner map value is count
+confusion_matrix = {'Graduate': {'Graduate': 0, 'Enrolled': 0, 'Dropout': 0, 'All': 0},
+                    'Enrolled': {'Graduate': 0, 'Enrolled': 0, 'Dropout': 0, 'All': 0},
+                    'Dropout': {'Graduate': 0, 'Enrolled': 0, 'Dropout': 0, 'All': 0}}
 
 for i in range(len(predictions)):
     prediction = predictions[i]
@@ -197,6 +203,7 @@ for i in range(len(predictions)):
 
     total_predictions[true_value] += 1
     total_predictions['All'] += 1
+    confusion_matrix[true_value][prediction] += 1
 
     if prediction == true_value:
         correct_predictions[true_value] += 1
@@ -207,4 +214,17 @@ print(f"Graduate testing accuracy = {(correct_predictions['Graduate'] / total_pr
 if include_enrolled:
     print(f"Enrolled testing accuracy = {(correct_predictions['Enrolled'] / total_predictions['Enrolled']) * 100}%", file=outputFile)
 print(f"Dropout testing accuracy = {(correct_predictions['Dropout'] / total_predictions['Dropout']) * 100}%", file=outputFile)
+print(f"Out of {total_predictions['Graduate']} true graduate samples, "
+      f"{confusion_matrix['Graduate']['Graduate']} were predicted graduate, "
+      f"{confusion_matrix['Graduate']['Enrolled']} were predicted enrolled, and, "
+      f"{confusion_matrix['Graduate']['Dropout']} where predicted dropout", file=outputFile)
+if include_enrolled:
+    print(f"Out of {total_predictions['Enrolled']} true Enrolled samples, "
+          f"{confusion_matrix['Enrolled']['Graduate']} were predicted graduate, "
+          f"{confusion_matrix['Enrolled']['Enrolled']} were predicted enrolled, and, "
+          f"{confusion_matrix['Enrolled']['Dropout']} where predicted dropout", file=outputFile)
+print(f"Out of {total_predictions['Dropout']} true Dropout samples, "
+      f"{confusion_matrix['Dropout']['Graduate']} were predicted graduate, "
+      f"{confusion_matrix['Dropout']['Enrolled']} were predicted enrolled, and, "
+      f"{confusion_matrix['Dropout']['Dropout']} where predicted dropout", file=outputFile)
 
