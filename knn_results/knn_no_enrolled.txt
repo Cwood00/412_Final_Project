@@ -30,9 +30,11 @@ Validation on k = 15
 accuracy: 0.8860192837465565
 accuracy for graduate: 0.9759238521836506
 accuracy for dropout: 0.7423971377459749
-Took 165.904945 seconds to perform cross validation for 8 k values
+Took 0.8042 seconds to perform cross validation for 8 k values
 Optimal k value = 9
-Took 0.015508 seconds to test knn, using 726 samples
+Took 0.016021 seconds to test knn, using 726 samples
 Total testing accuracy = 87.74104683195593%
 Graduate testing accuracy = 95.50827423167848%
 Dropout testing accuracy = 76.89768976897689%
+Out of 423 true graduate samples, 404 were predicted graduate, 0 were predicted enrolled, and, 19 where predicted dropout
+Out of 303 true Dropout samples, 70 were predicted graduate, 0 were predicted enrolled, and, 233 where predicted dropout

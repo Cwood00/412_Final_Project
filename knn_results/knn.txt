@@ -38,10 +38,13 @@ accuracy: 0.7377790336253179
 accuracy for graduate: 0.9310924369747899
 accuracy for enrolled: 0.29153605015673983
 accuracy for dropout: 0.6836917562724014
-Took 214.834007 seconds to perform cross validation for 8 k values
+Took 1.021981 seconds to perform cross validation for 8 k values
 Optimal k value = 13
-Took 0.023025 seconds to test knn, using 885 samples
+Took 0.018129 seconds to test knn, using 885 samples
 Total testing accuracy = 71.86440677966101%
 Graduate testing accuracy = 92.21698113207547%
 Enrolled testing accuracy = 28.205128205128204%
 Dropout testing accuracy = 65.90163934426229%
+Out of 424 true graduate samples, 391 were predicted graduate, 19 were predicted enrolled, and, 14 where predicted dropout
+Out of 156 true Enrolled samples, 74 were predicted graduate, 44 were predicted enrolled, and, 38 where predicted dropout
+Out of 305 true Dropout samples, 63 were predicted graduate, 41 were predicted enrolled, and, 201 where predicted dropout

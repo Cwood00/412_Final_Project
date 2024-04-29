@@ -1,0 +1,7 @@
+Took 0.002793 seconds to train naive bayes, using 2904 samples
+Took 0.0 seconds to test naive bayes, using 726 samples
+Total testing accuracy = 72.58953168044077%
+Graduate testing accuracy = 78.25059101654847%
+Dropout testing accuracy = 64.68646864686468%
+Out of 423 true graduate samples, 331 were predicted graduate, 0 were predicted enrolled, and, 92 where predicted dropout
+Out of 303 true Dropout samples, 107 were predicted graduate, 0 were predicted enrolled, and, 196 where predicted dropout

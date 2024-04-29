@@ -1,0 +1,41 @@
+Took 0.02906 seconds to train logistic regression, using 3539 samples
+Took 0.0 seconds to test logistic regression, using 885 samples
+Total testing accuracy = 65.08474576271186%
+Graduate testing accuracy = 92.68867924528303%
+Enrolled testing accuracy = 5.128205128205128%
+Dropout testing accuracy = 57.377049180327866%
+Out of 424 true graduate samples, 393 were predicted graduate, 5 were predicted enrolled, and, 26 where predicted dropout
+Out of 156 true Enrolled samples, 112 were predicted graduate, 8 were predicted enrolled, and, 36 where predicted dropout
+Out of 305 true Dropout samples, 115 were predicted graduate, 15 were predicted enrolled, and, 175 where predicted dropout
+
+    'Marital Status',
+    'Application order',
+    'Application mode',
+    'Course',
+    'Daytime/evening attendance',
+    'Previous qualification',
+    'Previous qualification (grade)',
+    'Nacionality',
+    'Mother\'s qualification',
+    'Father\'s qualification',
+    'Mother\'s occupation',
+    'Father\'s occupation',
+    'Admission grade',
+    'Displaced',
+    'Educational special needs',
+    'Debtor',
+    'Tuition fees up to date',
+    'Gender',
+    'Scholarship holder',
+    'Age at enrollment',
+    'Curricular units 1st sem (credited)',
+    'Curricular units 1st sem (enrolled)',
+    'Curricular units 1st sem (evaluations)',
+    'Curricular units 1st sem (approved)',
+    'Curricular units 1st sem (grade)',
+    'Curricular units 1st sem (without evaluations)',
+    'Curricular units 2nd sem (credited)',
+    'Curricular units 2nd sem (enrolled)',
+    'Curricular units 2nd sem (evaluations)',
+    'Curricular units 2nd sem (approved)',
+    'Curricular units 2nd sem (without evaluations)',
